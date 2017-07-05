@@ -5,7 +5,44 @@
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
 	<title>王者游戏</title>
 	<style>
-body{max-width:640px;margin:0 auto}.main img{display:block;width:100%}.weixin-mask{display:none;width:100%;background:url(images/bg.png);height:100%;position:fixed;top:0;left:0}.weixin-mask-detail{width:100%;position:fixed;top:100px;z-index:10000;font-size:16px;color:#fff;font-family:"microsoft yahei";text-align:center}.weixin-mask-detail p{padding-left:50px;padding-top:10px;color:#fff}.weixin-mask-detail ul{padding-top:20px;width:100%;list-style:none;padding:0}.point-arrow{width:40px;height:61px;display:block;background:url(images/point-arrow.png) no-repeat;position:fixed;top:8px;right:40px}.weixin-ico-more1{width:50px;height:28px;display:inline-block;margin:0 5px;vertical-align:middle}.weixin-ico{background:url(images/weixin-ico.png)}.weixin-ico-more2{width:50px;height:28px;display:inline-block;margin:0 5px;vertical-align:middle;background-position:-50px 0}.weixin-ico-browser{width:58px;height:57px;display:inline-block;vertical-align:middle;background-position:0 -29px;margin-left:10px}span img{display: none;}
+body {
+	max-width: 640px;
+	margin: 0 auto
+}
+
+.main img {
+	display: block;
+	width: 100%
+}
+
+.weixin-mask,.weixin-mask1 {
+	display: none;
+	width: 100%;
+	background-color: white;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0
+}
+
+.weixin-mask-detail,.weixin-mask-detail1 {
+	width: 100%;
+	position: fixed;
+	top: 100px;
+	z-index: 10000;
+	font-size: 16px;
+	color: #fff;
+	font-family: "microsoft yahei";
+	text-align: center
+}
+
+.close {
+	width: 10%;
+	position: absolute;
+	right: 4%;
+	top: 3%;
+	z-index: 999999;
+}
 	</style>
   <script type="text/javascript" src="jquery-1.8.3.min.js"></script> 
 </head>
@@ -27,14 +64,19 @@ body{max-width:640px;margin:0 auto}.main img{display:block;width:100%}.weixin-ma
 	</div>
 	<div class="weixin-mask">
         <div class="weixin-mask-detail">
-            <p>亲~!, 请使用浏览器打开下载~</p>
-            <ul>
-                <li>1、点击右上角<i class="weixin-ico weixin-ico-more1"></i>或<i class="weixin-ico weixin-ico-more2"></i></li>
-                <li>2、选择浏览器中打开<i class="weixin-ico weixin-ico-browser"></i><br>&nbsp;&nbsp;&nbsp;（即可下载游戏）</li>
-            </ul>
-            <i class="point-arrow"></i>
+           <img src="images/ios.jpg" style="width:100%">
         </div>
-        <div class="mask"></div>
+        <div class="close">
+        	<img src="images/close.png" style="width:100%">
+        </div>
+    </div>
+    <div class="weixin-mask1">
+        <div class="weixin-mask-detail1">
+           <img src="images/android.jpg" style="width:100%">
+        </div>
+        <div class="close">
+        	<img src="images/close.png" style="width:100%">
+        </div>
     </div>
 
     <script>
@@ -48,17 +90,14 @@ body{max-width:640px;margin:0 auto}.main img{display:block;width:100%}.weixin-ma
 				}
 			}
 				if(isWeiXin()){
-						//$(".weixin-mask").fadeIn();
 						var u = navigator.userAgent;
 						var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
 						var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 				if (isAndroid) {
-	    					// location.href="http://down2.cnnexus.com/apk/202415.apk"
-	    					alert("安卓");
+						$(".weixin-mask").fadeIn();
 			}
 				if (isiOS) {
-				    		// location.href="https://itunes.apple.com/cn/app/id1240707911"
-				    		alert("IOS");
+				    	$(".weixin-mask1").fadeIn();
 				}
 			}else{
 						var u = navigator.userAgent;
@@ -72,8 +111,9 @@ body{max-width:640px;margin:0 auto}.main img{display:block;width:100%}.weixin-ma
 				}
 			}
     	})
-    		$(".weixin-mask").on("click",function(){
+    		$(".close").on("click",function(){
     		$(".weixin-mask").fadeOut();
+    		$(".weixin-mask1").fadeOut();
     	})
     </script>
 
